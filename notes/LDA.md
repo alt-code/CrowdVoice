@@ -36,3 +36,6 @@ Just open a directory for a given number of topics and then index.html in there.
 ### Using LightLDA
 
 "With 4 machines, LightLDA can finish the training on the Wiki dataset in half an hour" http://www.dmtk.io/lightlda.html 
+
+### Corley
+"fwiw, if you see anyone evaluating LDA without doing multiple samples to get a mean value, reject lol"
