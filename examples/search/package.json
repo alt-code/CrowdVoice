@@ -1,0 +1,17 @@
+{
+  "name": "ILookLikeAnEngineer",
+  "version": "0.0.0",
+  "description": "Discover engineers on twitter",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsonfile": "^2.2.1",
+    "split": "^1.0.0",
+    "twit": "^2.1.0",
+    "underscore": "^1.8.3"
+  }
+}
