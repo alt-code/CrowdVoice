@@ -34,7 +34,8 @@ if __name__ == '__main__':
     # pruning the internal dictionary by removing words that occur less than 10 times
     model = gensim.models.Word2Vec(tweet_text)
     # print (model.most_similar(positive=['xfinity', 'internet'], negative=['sucks'], topn=1))
-    print (model.most_similar('twitter'))
+
+    # print (model.most_similar('twitter'))
     # print tweets['700364193455861761']
     
 
