@@ -7,6 +7,8 @@ import pprint
 import json
 import scipy
 import gensim
+import sys
+
 if __name__ == '__main__':
     
     #Code to dummp json content
@@ -30,12 +32,24 @@ if __name__ == '__main__':
     for key in keys:
         tweet_text.append(tweets[key]['text'].split(" "))
     # print tweet_text
+    num_features = 100    # Word vector dimensionality                      
+    min_word_count = 40   # Minimum word count                        
+    num_workers = 4       # Number of threads to run in parallel
+    context = 10          # Context window size                                                                                    
+    downsampling = 1e-3   # Downsample setting for frequent words
+
+    print "Training model..."
+    model = gensim.models.Word2Vec(tweet_text, workers=num_workers, \
+            size=num_features, min_count = min_word_count, \
+            window = context, sample = downsampling)
 
     # pruning the internal dictionary by removing words that occur less than 10 times
-    model = gensim.models.Word2Vec(tweet_text)
-    # print (model.most_similar(positive=['xfinity', 'internet'], negative=['sucks'], topn=1))
+    # model = gensim.models.Word2Vec(tweet_text)
+    # print (model.most_similar(positive=['twitter', 'tweets'], negative=['riptwitter'], topn=1))
 
-    print (model.most_similar('#riptwitter'))
+    print (model.most_similar(sys.argv[1]))
+    print "Checking similarity..."
+    print (model.similarity("twitter","jack"))
     # print tweets['700364193455861761']
     
 
