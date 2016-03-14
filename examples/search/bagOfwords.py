@@ -8,6 +8,19 @@ import json
 import scipy
 import gensim
 import sys
+import re
+from nltk.corpus import stopwords # Import the stop word list
+
+def pre_process(text):
+    processed_text = re.sub("[^a-zA-Z]",           # The pattern to search for
+            " ",                             # The pattern to replace it with
+            text)
+    processed_text = processed_text.lower()
+    processed_text = processed_text.split(" ")
+    stops = set(stopwords.words("english")) 
+    processed_text =  [w for w in processed_text if not w in stops]   
+
+    return processed_text
 
 if __name__ == '__main__':
     
@@ -30,7 +43,14 @@ if __name__ == '__main__':
 
     tweet_text = []
     for key in keys:
-        tweet_text.append(tweets[key]['text'].split(" "))
+        #without processing
+        # processed_text = tweets[key]['text'].lower().split(" ")
+
+        #processing
+        if(tweets[key]['user']['lang'] == 'en'):
+            processed_text = pre_process(tweets[key]['text'])
+            tweet_text.append(processed_text)
+    
     # print tweet_text
     num_features = 100    # Word vector dimensionality                      
     min_word_count = 40   # Minimum word count                        
@@ -49,7 +69,7 @@ if __name__ == '__main__':
 
     print (model.most_similar(sys.argv[1]))
     print "Checking similarity..."
-    print (model.similarity("twitter","jack"))
+    # print (model.similarity("#xfinity","bad"))
     # print tweets['700364193455861761']
     
 
